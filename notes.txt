@@ -1,0 +1,13 @@
+---------------------------
+Microsoft Visual Studio
+---------------------------
+Error
+
+There was an error running the selected code generator:
+
+'Method 'Create' in type 'Microsoft.EntityFrameworkCore.SqlServer.Query.Internal.SqlServerSqlTranslatingExpressionVisitorFactory' from assembly 'Microsoft.EntityFrameworkCore.SqlServer, Version=3.1.13.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' does not have an implementation.'
+---------------------------
+OK   
+---------------------------
+
+Opgelost door de versies van EntityFramework packages te downgraden naar 3.1.13, en SqlServer package te verwijderen.
