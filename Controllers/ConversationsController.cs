@@ -22,11 +22,29 @@ namespace ConversationPlanner.Controllers
         // GET: Conversations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Conversation
+            var viewModels = new List<ConversationListItemViewModel>();
+
+            var conversations = await _context.Conversation
                 .Include(c => c.Participant1)
                 .Include(c => c.Participant2)
                 .OrderByDescending(c => c.Timestamp)
-                .ToListAsync());
+                .ToListAsync();
+
+            DateTime currentTimestamp = DateTime.MinValue;
+            bool isEvenRound = true;
+            foreach (var conversation in conversations)
+            {
+                if (conversation.Timestamp != currentTimestamp)
+                {
+                    isEvenRound = !isEvenRound;
+                    currentTimestamp = conversation.Timestamp;
+                }
+
+                var viewModel = ConversationListItemViewModel.FromConversation(conversation, isEvenRound);
+                viewModels.Add(viewModel);
+            }
+
+            return View(viewModels);
         }
 
         // GET: Conversations/Details/5
