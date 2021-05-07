@@ -26,19 +26,19 @@ namespace ConversationPlanner.Data
                 var yuksel = AddParticipant(6, "Yuksel");
                 var willem = AddParticipant(7, "Willem", "RSO");
                 var tuba = AddParticipant(8, "Tuba", "M&O");
-                var ineke = AddParticipant(9, "Ineke", "?");
-                var wouter = AddParticipant(10, "Wouter", "?");
+                var ineke = AddParticipant(9, "Ineke", "ComIT");
+                var wouter = AddParticipant(10, "Wouter", "DIA");
                 var jasper = AddParticipant(11, "Jasper", "DIA");
-                var sophie = AddParticipant(12, "Sophie", "M&O");
+                var sophie = AddParticipant(12, "Sophie", "O&S");
                 var richard = AddParticipant(13, "Richard", "TSO");
                 var egbert = AddParticipant(14, "Egbert", "LTSO");
-                var nick = AddParticipant(15, "Nick", "?");
-                var rens = AddParticipant(16, "Rens", "?");
-                var rik = AddParticipant(17, "Rik", "?");
-                var walter = AddParticipant(18, "Walter", "?");
+                var nick = AddParticipant(15, "Nick", "DIA");
+                var rens = AddParticipant(16, "Rens", "DIA");
+                var rik = AddParticipant(17, "Rik", "DIA");
+                var walter = AddParticipant(18, "Walter", "DIA");
                 var jeroen = AddParticipant(19, "Jeroen", "SRE");
-                var sandra = AddParticipant(20, "Sandra", "?");
-                var robin = AddParticipant(21, "Robin", "?");
+                var sandra = AddParticipant(20, "Sandra", "ComIT");
+                var robin = AddParticipant(21, "Robin", "RIO");
 
                 var round1 = new DateTime(2021, 5, 4, 15, 40, 0);
                 AddConversation(willem, tuba, round1);
