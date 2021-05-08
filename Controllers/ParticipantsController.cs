@@ -54,7 +54,7 @@ namespace ConversationPlanner.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Name,Tag,IsPresent")] Participant participant)
+        public async Task<IActionResult> Create([Bind("Id,Name,Tag,IsPresent")] Participant participant)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ConversationPlanner.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Name,Tag,IsPresent")] Participant participant)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Tag,IsPresent")] Participant participant)
         {
             if (id != participant.Id)
             {

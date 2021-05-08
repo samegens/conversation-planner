@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConversationPlanner.Data;
 using ConversationPlanner.Models;
+using ConversationPlanner.Logic;
 
 namespace ConversationPlanner.Controllers
 {
     public class ConversationsController : Controller
     {
         private readonly ConversationPlannerContext _context;
+        private readonly RoundGenerator _roundGenerator = new RoundGenerator();
 
         public ConversationsController(ConversationPlannerContext context)
         {
@@ -21,6 +23,12 @@ namespace ConversationPlanner.Controllers
 
         // GET: Conversations
         public async Task<IActionResult> Index()
+        {
+            var viewModels = await GetConversationListItemViewModels();
+            return View(viewModels);
+        }
+
+        private async Task<List<ConversationListItemViewModel>> GetConversationListItemViewModels()
         {
             var viewModels = new List<ConversationListItemViewModel>();
 
@@ -44,7 +52,7 @@ namespace ConversationPlanner.Controllers
                 viewModels.Add(viewModel);
             }
 
-            return View(viewModels);
+            return viewModels;
         }
 
         // GET: Conversations/Details/5
@@ -184,8 +192,17 @@ namespace ConversationPlanner.Controllers
         [HttpPost]
         public async Task<IActionResult> GenerateNewRound(DateTime timestamp)
         {
-
-            return Index().Result;
+            if (timestamp == DateTime.MinValue)
+            {
+                ModelState.AddModelError("Timestamp", "Please enter a valid timestamp.");
+                var viewModels = await GetConversationListItemViewModels();
+                return View("Index", viewModels);
+            }
+            var conversations = _context.Conversation.ToList();
+            var newConversations = _roundGenerator.Generate(_context.Participant.ToList(), conversations, timestamp);
+            await _context.AddRangeAsync(newConversations);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         private bool ConversationExists(int id)
