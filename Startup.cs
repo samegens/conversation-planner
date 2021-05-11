@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ConversationPlanner.Data;
+using System.IO;
 
 namespace ConversationPlanner
 {
@@ -36,6 +37,11 @@ namespace ConversationPlanner
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             using (var context = serviceScope.ServiceProvider.GetService<ConversationPlannerContext>())
             {
+                if (!Directory.Exists("database"))
+                {
+                    Directory.CreateDirectory("database");
+                }
+                context.Database.Migrate();
                 context.Seed();
                 context.SaveChanges();
             }
