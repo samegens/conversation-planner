@@ -4,8 +4,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.min.js
-*.min.css
 
 VersionAssemblyInfo.cs
 
