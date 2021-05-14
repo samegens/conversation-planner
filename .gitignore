@@ -255,6 +255,5 @@ launchSettings.json
 
 # binaries
 *.zip
-dist/
 
 ConversationPlanner.db
