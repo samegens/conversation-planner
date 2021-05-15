@@ -32,9 +32,9 @@ namespace ConversationPlanner.UnitTests
             // Arrange
             var participants = new List<Participant>
             {
-                CreateParticipant("Alice", null, false),
-                CreateParticipant("Bob", null, false),
-                CreateParticipant("Charlie", null, false)
+                CreateParticipant("Alice", "A", false),
+                CreateParticipant("Bob", "A", false),
+                CreateParticipant("Charlie", "A", false)
             };
             var timestamp = new DateTime(2021, 5, 7, 17, 20, 0);
 

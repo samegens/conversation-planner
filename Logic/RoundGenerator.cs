@@ -74,7 +74,7 @@ namespace ConversationPlanner.Logic
         /// </summary>
         private List<Participant> GetPresentParticipants(List<Participant> participants)
         {
-            var presentParticipants = participants.Where(p => !string.IsNullOrEmpty(p.Tag)).ToList();
+            var presentParticipants = participants.Where(p => p.IsPresent && !string.IsNullOrEmpty(p.Tag)).ToList();
             presentParticipants.Shuffle();
             return presentParticipants;
         }
