@@ -9,11 +9,11 @@ node('docker-image-builder') {
        app = docker.build("ongoonku/conversation-planner")
     }
 
-    stage('Test image') {
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
+#    stage('Test image') {
+#        app.inside {
+#            sh 'echo "Tests passed"'
+#        }
+#    }
 
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-ongoonku') {
