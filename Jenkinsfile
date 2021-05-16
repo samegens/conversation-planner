@@ -1,4 +1,4 @@
-node {
+node('docker-image-builder') {
     def app
 
     stage('Clone repository') {
