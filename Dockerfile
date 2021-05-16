@@ -9,5 +9,6 @@ RUN dotnet publish "ConversationPlanner.csproj" -c Release -o /app
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS final
 WORKDIR /app
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "ConversationPlanner.dll"]
+# Use CMD instead of ENTRYPOINT so it can be overridden in a Jenkins pipeline.
+CMD ["dotnet", "ConversationPlanner.dll"]
 EXPOSE 80
