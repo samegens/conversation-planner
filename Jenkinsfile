@@ -6,7 +6,7 @@ node {
     }
 
     stage('Build image') {
-       app = docker.build(".")
+       app = docker.build("ongoonku/conversation-planner")
     }
 
     stage('Test image') {
