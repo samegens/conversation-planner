@@ -2,8 +2,13 @@ node('docker-image-builder') {
     def app
 
     stage('Clone repository') {
-        checkout scm
-    }
+		checkout([
+			$class: 'GitSCM',
+			branches: scm.branches,
+			extensions: scm.extensions + [[$class: 'CloneOption', depth: 0, noTags: false, reference: '', shallow: false]],
+			userRemoteConfigs: scm.userRemoteConfigs
+		])
+   }
 
     stage('Build image') {
        app = docker.build("ongoonku/conversation-planner")
