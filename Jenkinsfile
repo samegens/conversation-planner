@@ -10,9 +10,7 @@ node('docker-image-builder') {
     }
 
     stage('Test image') {
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+        sh 'docker run --rm ongoonku/conversation-planner echo "hello world!"'
     }
 
     stage('Push image') {
