@@ -11,6 +11,9 @@ node('docker-image-builder') {
    }
 
     stage('Build image') {
+		// Remove all dangling images.
+		sh 'docker image prune -f'
+		
        app = docker.build("ongoonku/conversation-planner")
     }
 
