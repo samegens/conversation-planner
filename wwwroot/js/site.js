@@ -2,3 +2,12 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$(function () {
+    $(".toggle-presence").click(function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        $.post(_this.attr("href"), function (res) {
+            location.reload();
+        });
+    });
+});

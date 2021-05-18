@@ -145,6 +145,17 @@ namespace ConversationPlanner.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // POST: Participants/TogglePresence/5
+        [HttpPost]
+        public async Task<bool> TogglePresence(int id)
+        {
+            var participant = await _context.Participant.FindAsync(id);
+            participant.IsPresent = !participant.IsPresent;
+            await _context.SaveChangesAsync();
+            return participant.IsPresent;
+        }
+
+
         private bool ParticipantExists(int id)
         {
             return _context.Participant.Any(e => e.Id == id);
